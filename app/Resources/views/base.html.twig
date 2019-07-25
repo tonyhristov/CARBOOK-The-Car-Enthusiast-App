@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>home</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    body, h1, h2, h3, h4, h5, h6 {
+        font-family: "Lato", sans-serif
+    }
+
+    .w3-bar, h1, button {
+        font-family: "Montserrat", sans-serif
+    }
+
+    .fa-anchor, .fa-coffee {
+        font-size: 200px
+    }
+</style>
+<body id="{% block body_id %} {% endblock %}">
+
+{% block header %}
+    <div class="w3-top">
+        <div class="w3-bar w3-blue w3-card w3-left-align w3-large">
+            <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-white"></a>
+
+            {% if app.user %}
+
+
+            {% else %}
+                <a href="#" class="w3-bar-item w3-button w3-padding-large w3-blue">Home</a>
+                <a href="register.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-#1E90FF">Register</a>
+                <a href="login.html"
+                   class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-#1E90FF">Login</a>
+                <a href="about.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-#1E90FF">About
+                    Me</a>
+                <a href="contact.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-#1E90FF">Contact
+                    Me</a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+<div class="container body-container">
+    {% block body %}
+        <div class="row">
+            <div id="main" class="col-sm-9">
+                {% block main %}{% endblock %}
+            </div>
+        </div>
+    {% endblock %}
+</div>
+
+{% block footer %}
+    <!-- Footer -->
+    <footer class="w3-container w3-padding-64 w3-center w3-opacity">
+        <div class="w3-xlarge w3-padding-32">
+            <p class="w3-text-grey">CARBOOK - THE SITE FOR CAR ENTHUSIASTS</p>
+            <i class="fa fa-facebook-official w3-hover-opacity"></i>
+            <i class="fa fa-instagram w3-hover-opacity"></i>
+        </div>
+    </footer>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('js/moment.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.js') }}"></script>
+    <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
+{% endblock %}
+
+</body>
+</html>
