@@ -1,0 +1,110 @@
+{% extends "base.html.twig" %}
+
+{% block body_id 'register' %}
+
+{% block body %}
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: white;
+        }
+
+        * {
+            box-sizing: border-box;
+            color: white;
+            text-align: center;
+
+        }
+
+        /* Add padding to containers */
+        .container {
+            margin: 75px 150px 30px;
+            padding: 16px 24px 24px 30px;
+            background-color: grey;
+        }
+
+        /* Full-width input fields */
+        input[type=text], input[type=password] {
+            width: 70%;
+            padding: 15px;
+            margin: 5px auto 5px;
+            display: block;
+            border: none;
+            text-align: center;
+            color: white;
+            background: #1E90FF;
+        }
+
+        input[type=text]:focus, input[type=password]:focus {
+            width: 70%;
+            padding: 15px;
+            margin: 5px auto 5px;
+            display: block;
+            border: none;
+            text-align: center;
+            color: white;
+            background: #1E90FF;
+        }
+
+        /*Overwrite default styles of hr*/
+        hr {
+            border: 3px solid white;
+            margin-bottom: 25px;
+        }
+
+
+        .btn {
+            background-color: #1e90ff;
+            color: white;
+            padding: 16px 20px;
+            margin: auto;
+            border: solid white;
+            cursor: pointer;
+            width: 65%;
+            opacity: 0.9;
+        }
+
+
+        ::placeholder {
+            color: white;
+        }
+
+
+        a {
+            color: white;
+        }
+
+
+        .signin {
+            color: white;
+            background-color: #1e90ff;
+            text-align: center;
+        }
+    </style>
+
+    <div class="container">
+        <h1>Login</h1>
+        <h3>Please fill in this form to login into your account.</h3>
+        <hr>
+
+
+        <label for="username"><b>Username</b></label>
+        <label>
+            <input type="text" placeholder="Enter Username" name="user[username]">
+        </label>
+
+        <label for="psw"><b>Password</b></label>
+        <label>
+            <input type="password" id="password" placeholder="Enter Password" name="_password">
+        </label>
+        <hr>
+
+        <button type="submit" class="btn btn-primary">Login</button>
+    </div>
+
+    <div class="container signin">
+        <p>You haven't got account? You can always go to make one at the <a href="#">Sign Up</a> page.</p>
+    </div>
+
+
+{% endblock %}
