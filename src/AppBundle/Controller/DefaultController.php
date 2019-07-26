@@ -40,23 +40,4 @@ class DefaultController extends Controller
         return $this->render('contact_me/contact.html.twig');
     }
 
-    /**
-     * @Route("register", name="registerPage")
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function registerAction(Request $request)
-    {
-        return $this->render('users/register.html.twig');
-    }
-
-    /**
-     * @Route("security", name="loginPage")
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function loginAction(Request $request)
-    {
-        return $this->render('security/login.html.twig');
-    }
 }
