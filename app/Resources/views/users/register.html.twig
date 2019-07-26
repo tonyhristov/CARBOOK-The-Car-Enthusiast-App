@@ -82,45 +82,51 @@
         }
     </style>
 
-    <div class="container">
-        <h1>Register</h1>
-        <h3>Please fill in this form to create an account.</h3>
-        <hr>
+
+    <form class="form-horizontal" action="{{ path('user_register') }}" method="post">
+        <div class="container">
+            <h1>Register</h1>
+            <h3>Please fill in this form to create an account.</h3>
+            <hr>
 
 
-        <label for="username"><b>Username</b></label>
-        <label>
-            <input type="text" placeholder="Enter Username" name="user[username]">
-        </label>
+            <label for="user_username"><b>Email</b></label>
+            <label>
+                <input type="text" id="user_username" placeholder="Username" name="user[username]" required >
+            </label>
 
-        <label for="email"><b>Email</b></label>
-        <label>
-            {#            <input type="text" placeholder="Enter Email" name="user[email]" required type="email">#}
-            <input type="text" id="user_email" placeholder="Email" name="user[email]">
-        </label>
+            <label for="user_email"><b>Email</b></label>
+            <label>
+                <input type="text" id="user_email" placeholder="Email" name="user[email]" required >
+            </label>
 
-        <label for="psw"><b>Password</b></label>
-        <label>
-            <input type="password" placeholder="Enter Password" name="user[pass]user[password][first]" required>
-        </label>
+            <label for="user_password_first"><b>Password</b></label>
+            <label>
+                <input type="password" id="user_password_first" placeholder="Password"
+                       name="user[password][first]" required>
+            </label>
 
-        <label for="psw-repeat"><b>Confirm Password</b></label>
-        <label>
-            <input type="password" placeholder="Confirm Password" name="user[password][second]" required>
-        </label>
+            <label for="user_password_second"><b>Confirm Password</b></label>
+            <label>
+                <input type="password" id="user_password_second" placeholder="Password"
+                       name="user[password][second]" required>
+            </label>
 
-        <label for="psw-repeat"><b>Name</b></label>
-        <label>
-            <input type="text" placeholder="Enter your name" name="user[name]" required>
-        </label>
-        <hr>
+            <label for="user_name"><b>Name</b></label>
+            <label>
+                <input type="text" id="user_name" placeholder="Name"
+                       name="user[name]" required>
+            </label>
+            <hr>
 
-        <button type="submit" class="btn btn-primary">Register</button>
+            <button type="submit" class="btn btn-primary">Register</button>
 
-    </div>
+{#                        {{ form_row(form._token) }}#}
+        </div>
+    </form>
 
     <div class="container signin">
-        <p>Already have an account? Go to <a href="#">Log In</a> page.</p>
+        <p>Already have an account? Go to <a href="{{ path('security_login') }}">Log In</a> page.</p>
     </div>
 
 
