@@ -29,7 +29,6 @@ class DefaultController extends Controller
         return $this->render('about/about.html.twig');
     }
 
-
     /**
      * @Route("/contact", name="contactPage")
      * @param Request $request
@@ -39,5 +38,4 @@ class DefaultController extends Controller
     {
         return $this->render('contact_me/contact.html.twig');
     }
-
 }
