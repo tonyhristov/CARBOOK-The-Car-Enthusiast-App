@@ -37,12 +37,15 @@
 
             {% if app.user %}
                 <a href="{{ path('homepage') }}" class="w3-bar-item w3-button w3-padding-large w3-blue">Home</a>
-                <a href="#"
-                   class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-#1E90FF">My Profile</a>
-                <a href="#"
-                   class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-#1E90FF">Create Post</a>
                 <a href="{{ path('security_logout') }}"
-                   class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-#1E90FF">Logout</a>
+                   class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-#1E90FF"
+                   style="float: right">Logout</a>
+                <a href="#"
+                   class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-#1E90FF"
+                   style="float: right">My Profile</a>
+                <a href="#"
+                   class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-#1E90FF"
+                   style="float: right">Create Post</a>
             {% else %}
                 <a href="{{ path('homepage') }}" class="w3-bar-item w3-button w3-padding-large w3-blue">Home</a>
                 <a href="{{ path('user_register') }}"
