@@ -35,4 +35,13 @@ class UserController extends Controller
         }
         return $this->render('users/register.html.twig');
     }
+
+    /**
+     * @Route("/logout", name="security_logout")
+     * @throws \Exception
+     */
+    public function logout()
+    {
+        throw new \Exception("Logout failed");
+    }
 }
