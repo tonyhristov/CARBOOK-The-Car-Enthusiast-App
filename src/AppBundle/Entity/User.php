@@ -50,6 +50,13 @@ class User implements UserInterface
      */
     private $name;
 
+    /**
+     * @var string
+     *
+     * @var @ORM\Column(name="image", type="text")
+     */
+    private $image;
+
 
     /**
      * Get id
@@ -197,6 +204,22 @@ class User implements UserInterface
     public function eraseCredentials()
     {
         // TODO: Implement eraseCredentials() method.
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param mixed $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
     }
 }
 
