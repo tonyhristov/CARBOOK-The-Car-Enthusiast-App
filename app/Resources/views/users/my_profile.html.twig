@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <br><br>
+
+    <div style="padding: 20px; border: none; background: white;">
+        <img src="{{ user.image }}" width="400" height="200"
+             alt="Oops! You haven't set your profile picture. You can do it when you visit &quot;Edit Profile&quot; .">
+    </div>
+
+    <div style="padding: 20px; border: none; background: white;">
+        <h1>Hello , {{ user.name }}!</h1>
+        <h1>your username is: {{ user.username }}</h1>
+        <h1>your email is: {{ user.email }}</h1>
+        <div style="background: #1E90FF; float:right ">
+            <a href="#"
+               class=" w3-button w3-hide-small w3-padding-large w3-hover-grey" style="color: white">All Posts</a>
+            <a href="#"
+               class=" w3-button w3-hide-small w3-padding-large w3-hover-grey" style="color: white">Edit
+                Profile</a>
+        </div>
+    </div>
+
+    <br><br>
+
+    <div align="center">
+        <button type="button" style="padding: 0; border: solid #1E90FF; background: #1E90FF;">
+            <a href="#">
+                <img src="{{ asset('currentCars.jpg') }}" alt="Save icon"/>
+                <br/>Current Car
+            </a>
+        </button>
+
+        <button type="button" style="padding: 0; border: solid #1E90FF; background: #1E90FF;">
+            <a href="#">
+                <img src="{{ asset('previousCars.jpg') }}" alt="Save icon"/>
+                <br/>Previous Cars
+            </a>
+        </button>
+    </div>
+
+{% endblock %}
+
