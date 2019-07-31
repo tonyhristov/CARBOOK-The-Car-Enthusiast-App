@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id 'edit_profile' %}
+
+{% block body %}
+
+    <form class="centerText" action="{{ path('user_edit_profile') }}" method="post">
+        <div class="registerForm">
+            <h1>Edit Profile</h1>
+            <hr>
+
+            <label for="user_username"><b>Username</b></label>
+            <label>
+                <input type="text" id="user_username" value="{{ app.user.username }}" name="user[username]">
+            </label>
+
+
+            <label for="user_email"><b>Email</b></label>
+            <label>
+                <input type="text" id="user_email" value="{{ app.user.email }}" name="user[email]">
+            </label>
+
+
+            <label for="user_name"><b>Name</b></label>
+            <label>
+                <input type="text" id="user_name" value="{{ app.user.name }}"
+                       name="user[name]">
+            </label>
+
+
+            <label for="user_name"><b>Image</b></label>
+            <label>
+                <input type="text" id="user_image" value="{{ app.user.image }}"
+                       name="user[image]">
+            </label>
+            <hr>
+
+            <button type="submit" class="btn btn-primary">Edit</button>
+
+            {#                        {{ form_row(form._token) }}#}
+        </div>
+    </form>
+
+{% endblock %}
+
+
