@@ -44,4 +44,17 @@ class UserController extends Controller
     {
         throw new \Exception("Logout failed");
     }
+
+    /**
+     * @Route("/my_profile",  name="user_my_profile")
+     */
+    public function myProfile()
+    {
+        $userRepository = $this
+            ->getDoctrine()
+            ->getRepository(User::class);
+        $currentUser = $userRepository->find($this->getUser());
+
+        return $this->render("users/my_profile.html.twig", ["user" => $currentUser]);
+    }
 }
