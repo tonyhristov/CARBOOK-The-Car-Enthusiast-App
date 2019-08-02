@@ -98,3 +98,13 @@ a {
     border: none;
     background: white
 }
+
+.file {
+    background-color: #1e90ff;
+    color: white;
+    padding: 10px 10px;
+    margin:25px auto;
+    cursor: pointer;
+    width: 30%;
+    opacity: 0.9;
+}
