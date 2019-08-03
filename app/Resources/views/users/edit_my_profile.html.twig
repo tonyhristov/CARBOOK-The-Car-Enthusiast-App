@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    <form class="centerText" action="{{ path('user_edit_profile') }}" method="post">
+    <form class="centerText" enctype="multipart/form-data" action="{{ path('user_edit_profile') }}" method="post">
         <div class="registerForm">
             <h1>Edit Profile</h1>
             <hr>
@@ -28,10 +28,10 @@
             </label>
 
 
-            <label for="user_name"><b>Image</b></label>
+            <label for="user_name"><b>Upload Image</b></label>
             <label>
-                <input type="text" id="user_image" value="{{ app.user.image }}"
-                       name="user[image]">
+                <input accept=".jpg, .jpeg, .png" type="file" id="user_image" value="{{ app.user.image }}"
+                       name="user[image]" class="file" >
             </label>
             <hr>
 
