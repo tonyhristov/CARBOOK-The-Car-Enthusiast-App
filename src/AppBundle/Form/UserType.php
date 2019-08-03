@@ -8,9 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Serializer\Mapping\Loader\FileLoader;
 
 class UserType extends AbstractType
 {
@@ -29,7 +27,10 @@ class UserType extends AbstractType
                     "second_options" => ["label" => "Repeat Password"]
                 ])
             ->add('name', TextType::class)
-            ->add('image', TextType::class);
+            ->add('image', FileType::class,
+                [
+                    "data_class" => null,
+                ]);
     }
 
     /**

@@ -53,7 +53,7 @@ class User implements UserInterface
     /**
      * @var string
      *
-     * @var @ORM\Column(name="image", type="text")
+     * @var @ORM\Column(name="image", type="string", length=255, nullable=true)
      */
     private $image;
 
@@ -207,7 +207,7 @@ class User implements UserInterface
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getImage()
     {
@@ -215,11 +215,12 @@ class User implements UserInterface
     }
 
     /**
-     * @param mixed $image
+     * @param string $image
      */
     public function setImage($image)
     {
         $this->image = $image;
     }
+
 }
 
