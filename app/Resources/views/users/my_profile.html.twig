@@ -4,8 +4,10 @@
     <div class="registerForm">
         <br><br>
 
+        <h2 class="centerText">My Profile</h2>
+
         <div style="padding: 20px; border: none; background: grey;">
-            <img src="{{ user.image }}" width="400" height="200"
+            <img class="w3-circle" src="{{ asset('uploads/images/profiles/' ~ user.image) }}" width="300" height="300"
                  alt="Oops! You haven't set your profile picture. You can do it when you visit &quot;Edit Profile&quot; .">
         </div>
 
