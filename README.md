@@ -12,7 +12,7 @@ and we want to share them with other people.
 Pictures
 =========
 Homepage when you are logged out.
-![](Pictures%20For%20README/loggedOutIndex.png)
+![Homepage when you are logged out.](Pictures%20For%20README/loggedOutIndex.png)
 About Me page.
 ![](Pictures%20For%20README/aboutMe.png)
 Contact Page
