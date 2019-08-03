@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
 use AppBundle\Form\UserType;
+use AppBundle\Service\Users\UserServiceInterface;
 use Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -16,30 +17,42 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends Controller
 {
     /**
-     * @Route("register", name="user_register")
+     * @var UserServiceInterface
+     */
+    private $userService;
+
+    public function __construct(UserServiceInterface $userService)
+    {
+        $this->userService = $userService;
+    }
+
+
+    /**
+     * @Route("register", name="user_register", methods={"GET"})
      * @param Request $request
      * @return Response
      */
     public function register(Request $request)
     {
+        return $this->render('users/register.html.twig', [
+            "form" => $this->createForm(UserType::class)->createView()
+        ]);
+    }
+
+    /**
+     * @Route("register",methods={"POST"})
+     * @param Request $request
+     * @return Response
+     */
+    public function registerProcess(Request $request)
+    {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
-
-        if ($form->isSubmitted()) {
-            $passwordHash = $this->get("security.password_encoder")
-                ->encodePassword($user, $user->getPassword());
-
-
-            $user->setPassword($passwordHash);
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
-
-            return $this->redirectToRoute("security_login");
-        }
-        return $this->render('users/register.html.twig');
+        $this->userService->save($user);
+        return $this->redirectToRoute("security_login");
     }
+
 
     /**
      * @Route("/my_profile",  name="user_my_profile")
@@ -49,18 +62,12 @@ class UserController extends Controller
         if (!$this->getUser()) {
             return $this->redirectToRoute("security_login");
         }
-
-        $userRepository = $this
-            ->getDoctrine()
-            ->getRepository(User::class);
-        $currentUser = $userRepository->find($this->getUser());
-
-        return $this->render("users/my_profile.html.twig", ["user" => $currentUser]);
+        return $this->render("users/my_profile.html.twig", ["user" => $this->userService->currentUser()]);
     }
 
 
     /**
-     * @Route("edit_profile", name="user_edit_profile")
+     * @Route("edit_profile", name="user_edit_profile", methods={"GET"})
      *
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @param Request $request
@@ -68,30 +75,49 @@ class UserController extends Controller
      */
     public function edit(Request $request)
     {
+        return $this->render('users/edit_my_profile.html.twig');
+    }
+
+    /**
+     * @Route("edit_profile", methods={"POST"})
+     *
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+     * @param Request $request
+     * @return Response
+     */
+    public function editProcess(Request $request)
+    {
         $user = $this->getUser();
         $form = $this->createForm(UserType::class, $user);
         $form->remove("password");
         $form->handleRequest($request);
 
+        $this->uploadFile($form, $user);
+        $this->userService->editProfile($user);
+        return $this->redirectToRoute("user_my_profile");
 
-        if ($form->isSubmitted()) {
-            $this->uploadFile($form, $user);
-
-            $em = $this->getDoctrine()->getManager();
-            $em->merge($user);
-            $em->flush();
-
-            return $this->redirectToRoute("user_my_profile");
-        }
-        return $this->render('users/edit_my_profile.html.twig');
     }
 
+
     /**
-     * @Route("edit_password", name="user_edit_password")
+     * @Route("edit_password", name="user_edit_password", methods={"GET"})
      * @param Request $request
      * @return Response
      */
     public function password(Request $request)
+    {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute("security_login");
+        }
+        return $this->render('users/edit_my_password.html.twig');
+    }
+
+    /**
+     * @Route("edit_password", methods={"POST"})
+     * @param Request $request
+     * @return Response
+     */
+    public function passwordProcess(Request $request)
     {
         $user = $this->getUser();
         $form = $this->createForm(UserType::class, $user);
@@ -101,19 +127,8 @@ class UserController extends Controller
         $form->remove('image');
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()) {
-            $passwordHash = $this
-                ->get("security.password_encoder")
-                ->encodePassword($user, $user->getPassword());
-
-            $user->setPassword($passwordHash);
-            $em = $this->getDoctrine()->getManager();
-            $em->merge($user);
-            $em->flush();
-
-            return $this->redirectToRoute("user_my_profile");
-        }
-        return $this->render('users/edit_my_password.html.twig');
+        $this->userService->editPassword($user);
+        return $this->redirectToRoute("user_my_profile");
     }
 
 
@@ -126,22 +141,19 @@ class UserController extends Controller
         throw new Exception("Logout failed");
     }
 
+
     /**
      * @param \Symfony\Component\Form\FormInterface $form
      * @param $user
      */
     private function uploadFile(FormInterface $form, User $user)
     {
-        /**
-         * @var UploadedFile $file
-         */
+        /**@var UploadedFile $file */
         $file = $form['image']->getData();
         if ($file === null) {
             $user->setImage(null);
         } else {
             $fileName = md5(uniqid()) . '.' . $file->guessExtension();
-
-
             if ($file) {
                 $file->move(
                     $this->getParameter("profile_image_directory"),
@@ -149,11 +161,6 @@ class UserController extends Controller
                 );
                 $user->setImage($fileName);
             }
-
-//        $fs = new filesystem();
-////        $file = $this->getParameter("profile_image_directory" . '/' . $user->getImage());
-////        $fs->remove(array($file));
-
         }
     }
 }

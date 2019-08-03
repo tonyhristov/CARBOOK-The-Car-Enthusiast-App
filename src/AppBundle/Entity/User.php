@@ -223,4 +223,3 @@ class User implements UserInterface
     }
 
 }
-
