@@ -96,14 +96,15 @@ a {
 .profile {
     padding: 20px;
     border: none;
-    background: white
+    background: white;
+    color: white;
 }
 
 .file {
     background-color: #1e90ff;
     color: white;
     padding: 10px 10px;
-    margin:25px auto;
+    margin: 25px auto;
     cursor: pointer;
     width: 30%;
     opacity: 0.9;
