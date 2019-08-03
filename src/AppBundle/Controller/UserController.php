@@ -7,6 +7,8 @@ use AppBundle\Form\UserType;
 use Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -44,6 +46,10 @@ class UserController extends Controller
      */
     public function profile()
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute("security_login");
+        }
+
         $userRepository = $this
             ->getDoctrine()
             ->getRepository(User::class);
@@ -55,6 +61,8 @@ class UserController extends Controller
 
     /**
      * @Route("edit_profile", name="user_edit_profile")
+     *
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @param Request $request
      * @return Response
      */
@@ -65,7 +73,10 @@ class UserController extends Controller
         $form->remove("password");
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted()) {
+            $this->uploadFile($form, $user);
+
             $em = $this->getDoctrine()->getManager();
             $em->merge($user);
             $em->flush();
@@ -113,5 +124,36 @@ class UserController extends Controller
     public function logout()
     {
         throw new Exception("Logout failed");
+    }
+
+    /**
+     * @param \Symfony\Component\Form\FormInterface $form
+     * @param $user
+     */
+    private function uploadFile(FormInterface $form, User $user)
+    {
+        /**
+         * @var UploadedFile $file
+         */
+        $file = $form['image']->getData();
+        if ($file === null) {
+            $user->setImage(null);
+        } else {
+            $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+
+
+            if ($file) {
+                $file->move(
+                    $this->getParameter("profile_image_directory"),
+                    $fileName
+                );
+                $user->setImage($fileName);
+            }
+
+//        $fs = new filesystem();
+////        $file = $this->getParameter("profile_image_directory" . '/' . $user->getImage());
+////        $fs->remove(array($file));
+
+        }
     }
 }
