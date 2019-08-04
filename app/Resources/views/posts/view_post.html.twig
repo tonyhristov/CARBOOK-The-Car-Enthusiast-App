@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="post">
+
+        <div>
+            <h4>
+                {{ post.author.username }}
+            </h4>
+        </div>
+
+        <hr>
+
+        <div>
+            <h1>{{ post.title }}</h1>
+        </div>
+
+        <div>
+            <h3>{{ post.description }}</h3>
+        </div>
+
+        <div>
+            <img src="{{ asset('uploads/images/posts/' ~ post.image) }}" alt="Cannot load the picture"
+                 width="600" height="300">
+        </div>
+
+        <div>
+            <h4>
+                {{ post.addedOn | date("F jS \\a\\t g:ia") }}
+            </h4>
+        </div>
+        <div style="background: #1E90FF; float:right ">
+            <a href="{{ path('homepage') }}"
+               class=" w3-button w3-hide-small w3-padding-large w3-hover-grey" style="color: white">Back</a>
+        </div>
+        <br>
+        <br>
+    </div>>
+
+{% endblock %}
+
