@@ -1,0 +1,40 @@
+{% extends "base.html.twig" %}
+
+{% block body_id 'create_post' %}
+
+{% block body %}
+
+    <form class="centerText" enctype="multipart/form-data" action="{{ path('create_post') }}" method="post">
+        <div class="registerForm">
+            <h1>Create Post</h1>
+            <h3>To create post you need to fill this fields.</h3>
+            <hr>
+
+
+            <label for="user_username"><b>Title</b></label>
+            <label>
+                <input type="text" id="post_title" placeholder="Title" name="post[title]" required>
+            </label>
+
+            <label for="user_email"><b>Description</b></label>
+            <label>
+                <textarea class="description" id="post_description" placeholder="Description" name="post[description]"
+                          required></textarea>
+            </label>
+
+            <label for="user_name"><b>Upload Image</b></label>
+            <label>
+                <input accept=".jpg, .jpeg, .png" type="file" id="post_image"
+                       name="post[image]" class="file">
+            </label>
+            <hr>
+
+            <button type="submit" class="btn btn-primary">CREATE POST</button>
+
+            {#                        {{ form_row(form._token) }}#}
+        </div>
+    </form>
+
+
+
+{% endblock %}
