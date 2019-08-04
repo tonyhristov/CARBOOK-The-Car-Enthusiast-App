@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -56,6 +57,21 @@ class User implements UserInterface
      * @var @ORM\Column(name="image", type="string", length=255, nullable=true)
      */
     private $image;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Post", mappedBy="author")
+     */
+    private $posts;
+
+    /**
+     * User constructor.
+     */
+    public function __construct()
+    {
+        $this->posts = new ArrayCollection();
+    }
 
 
     /**
@@ -220,6 +236,24 @@ class User implements UserInterface
     public function setImage($image)
     {
         $this->image = $image;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getPosts(): ArrayCollection
+    {
+        return $this->posts;
+    }
+
+    /**
+     * @param Post $posts
+     * @return User
+     */
+    public function addPosts(Post $posts)
+    {
+        $this->posts[] = $posts;
+        return $this;
     }
 
 }
