@@ -8,6 +8,7 @@ imports:
 parameters:
   locale: en
   profile_image_directory: '%kernel.project_dir%/web/uploads/images/profiles'
+  post_image_directory: '%kernel.project_dir%/web/uploads/images/posts'
 
 framework:
   #esi: ~
