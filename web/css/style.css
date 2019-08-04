@@ -109,3 +109,33 @@ a {
     width: 30%;
     opacity: 0.9;
 }
+
+
+.description {
+    width: 70%;
+    padding: 15px;
+    margin: 5px auto 5px;
+    display: block;
+    border: none;
+    text-align: center;
+    color: white;
+    background: #1E90FF;
+}
+
+
+.post {
+    margin: 75px 150px 30px;
+    padding: 16px 24px 24px 30px;
+    background-color: grey;
+    color: white;
+}
+.readmore{
+    background-color: #1e90ff;
+    color: white;
+    padding: 16px 20px;
+    margin: auto;
+    border: solid white;
+    cursor: pointer;
+    width: 65%;
+    opacity: 0.9;
+}
