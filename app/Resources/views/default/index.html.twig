@@ -4,6 +4,43 @@
 
     {% if app.user %}
 
+        {% for post in posts %}
+            <div class="post">
+                <article>
+                    <div>
+                        <h5 class="author">{{ post.author.username }}</h5>
+                    </div>
+                    <hr>
+                    <div>
+                        <h1>{{ post.title }}</h1>
+                    </div>
+                    <div>
+                        {% set count = post.description | length / 2 %}
+                        <p>
+                            {{ post.description | slice(0, count) ~ '...' }}
+                        </p>
+                    </div>
+                    <div>
+                        <a href="{{ path('article_view', {id: post.id}) }}">
+                            <img src="{{ asset('uploads/images/posts/' ~ post.image) }}" alt="Cannot load the picture"
+                                 width="400" height="200">
+                        </a>
+                    </div>
+                    <br>
+                    <div style="background: #1E90FF; float:right ">
+                        <a href="{{ path('article_view', {id: post.id}) }}"
+                           class=" w3-button w3-hide-small w3-padding-large w3-hover-grey" style="color: white">Read
+                            more</a>
+                    </div>
+                    <br><br><br>
+                    <div>
+                        <h5 style="float: right">Date Added: {{ post.addedOn | date("F jS \\a\\t g:ia") }}</h5>
+                    </div>
+                    <br>
+                </article>
+            </div>
+        {% endfor %}
+
     {% else %}
         <!-- Header -->
         <header class="w3-container w3-blue w3-center" style="padding:128px 16px">
