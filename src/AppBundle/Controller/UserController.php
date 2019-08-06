@@ -2,8 +2,11 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\PreviousCar;
 use AppBundle\Entity\User;
 use AppBundle\Form\UserType;
+use AppBundle\Repository\PreviousCarRepository;
+use AppBundle\Service\PreviousCars\PreviousCarService;
 use AppBundle\Service\Users\UserServiceInterface;
 use Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -20,6 +23,7 @@ class UserController extends Controller
      * @var UserServiceInterface
      */
     private $userService;
+
 
     public function __construct(UserServiceInterface $userService)
     {
@@ -93,14 +97,10 @@ class UserController extends Controller
     {
         $user = $this->getUser();
         $form = $this->createForm(UserType::class, $user);
+        $form->remove("username");
         $form->remove("password");
         $form->handleRequest($request);
 
-//        var_dump($this->userService->findOneByUsername($form["username"]->getData()));
-//        exit();
-        if (null !== $this->userService->findOneByUsername($form["username"]->getData())) {
-            return $this->redirectToRoute("user_my_profile");
-        }
         $this->uploadFile($form, $user);
         $this->userService->editProfile($user);
         return $this->redirectToRoute("user_my_profile");
@@ -137,6 +137,64 @@ class UserController extends Controller
 
         $this->userService->editPassword($user);
         return $this->redirectToRoute("user_my_profile");
+    }
+
+    /**
+     * @Route("edit_username", name="user_edit_username", methods={"GET"})
+     * @param Request $request
+     * @return Response
+     */
+    public function editUsername(Request $request)
+    {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute("security_login");
+        }
+        return $this->render('users/edit_my_username.html.twig');
+    }
+
+    /**
+     * @Route("edit_username", methods={"POST"})
+     * @param Request $request
+     * @return Response
+     */
+    public function editUsernameProcess(Request $request)
+    {
+        $user = $this->getUser();
+        $form = $this->createForm(UserType::class, $user);
+        $form->remove('password');
+        $form->remove('email');
+        $form->remove('name');
+        $form->remove('image');
+        $form->handleRequest($request);
+
+        if (null !== $this->userService->findOneByUsername($form["username"]->getData())) {
+            return $this->redirectToRoute("user_my_profile");
+        }
+
+        $this->userService->editProfile($user);
+        return $this->redirectToRoute("user_my_profile");
+    }
+
+
+    /**
+     * @Route("/{username}}",  name="user_profile")
+     * @param User $user
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function viewProfile(User $user)
+    {
+        $user = $this->userService->findOneByUsername($user->getUsername());
+        $previousCar = $this
+            ->getDoctrine()
+            ->getRepository(PreviousCar::class)
+            ->findBy(["driver" => $this->userService->findOne($user)]);
+        if (!$this->getUser()) {
+            return $this->redirectToRoute("security_login");
+        }
+        return $this->render("users/view_profile.html.twig", [
+            "user" => $user,
+            "previousCars" => $previousCar
+        ]);
     }
 
 
