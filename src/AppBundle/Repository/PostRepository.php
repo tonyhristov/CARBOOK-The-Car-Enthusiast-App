@@ -15,13 +15,6 @@ use Doctrine\ORM\OptimisticLockException;
  */
 class PostRepository extends \Doctrine\ORM\EntityRepository
 {
-//    public function __construct(EntityManagerInterface $em, Mapping\ClassMetadata $metadata = null)
-//    {
-//        parent::__construct($em,
-//            $metadata == null ?
-//                new Mapping\ClassMetadata(Post::class) :
-//                $metadata);
-//    }
 
     public function __construct(EntityManagerInterface $em, Mapping\ClassMetadata $metadata = null)
     {

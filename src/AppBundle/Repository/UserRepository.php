@@ -6,6 +6,8 @@ use AppBundle\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping;
 use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
+use Doctrine\ORM\TransactionRequiredException;
 
 /**
  * UserRepository
@@ -44,4 +46,5 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
             return false;
         }
     }
+
 }
