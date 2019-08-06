@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="registerForm">
+        <br><br>
+
+        <h1 class="centerText">{{ user.username }}</h1>
+
+        <div style="padding: 20px; border: none; background: grey;">
+            <img class="w3-circle" src="{{ asset('uploads/images/profiles/' ~ user.image) }}" width="300" height="300"
+                 alt="Oops! You haven't set your profile picture. You can do it when you visit &quot;Edit Profile&quot; .">
+        </div>
+
+        <div class="profile" style="padding: 20px; border: none; background: grey;">
+            <h1>Hi, I am: {{ user.name }}!</h1>
+            <h1>My email is: {{ user.email }}</h1>
+        </div>
+
+        <div class="profile" style="padding: 20px; border: none; background: grey;">
+            <hr class="hr-primary">
+            <h2>Previous Cars</h2>
+            <hr class="hr-medium">
+            {% for previousCar in previousCars %}
+                <div>
+                    <h1>{{ previousCar.make }} {{ previousCar.model }}</h1>
+                    <h1>Engine: {{ previousCar.engine }}</h1>
+                    <h1>Year: {{ previousCar.year }} </h1>
+                </div>
+
+                <div>
+                    <h3>{{ previousCar.description }}</h3>
+                </div>
+
+                <div>
+                    <img src="{{ asset('uploads/images/previous_cars/' ~ previousCar.image) }}"
+                         alt="You have not set picture for this post."
+                         width="400" height="200">
+                </div>
+                <hr class="hr-small">
+            {% endfor %}
+        </div>
+        <div style="background: #1E90FF; float:right ">
+            <a href="{{ path("homepage") }}" class="btn"
+               style=" color: white">Back</a>
+
+        </div>
+        <br><br>
+
+    </div>
+
+{% endblock %}
+
+
