@@ -2,6 +2,15 @@
 
 {% block body %}
 
+<<br>
+<br>
+<br>
+<div style="background: #1E90FF; text-align: center">
+    <a href="{{ path('create_post') }}" style=" color: white"
+       class=" w3-button w3-hide-small w3-padding-large w3-hover-grey">ADD POST</a>
+</div>
+
+<div class="profile" style="padding: 20px; border: none; background: grey;">
     {% for post in posts %}
         <div class="post">
             <post>
@@ -23,7 +32,8 @@
                     </p>
                 </div>
                 <div>
-                    <img src="{{ asset('uploads/images/posts/' ~ post.image) }}" alt="You have not set picture for this post."
+                    <img src="{{ asset('uploads/images/posts/' ~ post.image) }}"
+                         alt="You have not set picture for this post."
                          width="400" height="200">
                 </div>
                 <br>
@@ -43,6 +53,6 @@
         </div>
     {% endfor %}
 
-{% endblock %}
+    {% endblock %}
 
 

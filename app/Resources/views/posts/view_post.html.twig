@@ -6,9 +6,11 @@
 
         <div>
             <h4>
-                <img src="{{ asset('uploads/images/profiles/' ~ post.author.image) }}" alt="Cannot load the picture"
-                     class="w3-circle" width="50" height="50">
-                {{ post.author.username }}
+                <a href="{{ path('user_profile', {username: post.author.username}) }}">
+                    <img src="{{ asset('uploads/images/profiles/' ~ post.author.image) }}" alt="Cannot load the picture"
+                         class="w3-circle" width="50" height="50">
+                    {{ post.author.username }}
+                </a>
             </h4>
         </div>
 
