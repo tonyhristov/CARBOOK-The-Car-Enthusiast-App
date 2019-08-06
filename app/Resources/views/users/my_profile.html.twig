@@ -24,6 +24,9 @@
                 <a href="{{ path('user_edit_password') }}"
                    class=" w3-button w3-hide-small w3-padding-large w3-hover-grey" style="color: white">Change
                     Password</a>
+                <a href="{{ path('user_edit_username') }}"
+                   class=" w3-button w3-hide-small w3-padding-large w3-hover-grey" style="color: white">Change
+                    Username</a>
             </div>
         </div>
 
@@ -38,7 +41,7 @@
             </button>
 
             <button type="button" style="padding: 0; margin: 5px; border: solid #1E90FF; background: #1E90FF;">
-                <a href="#">
+                <a href="{{ path('previous_cars') }}">
                     <img src="{{ asset('previousCars.jpg') }}" alt="Save icon"/>
                     <br/>Previous Cars
                 </a>
