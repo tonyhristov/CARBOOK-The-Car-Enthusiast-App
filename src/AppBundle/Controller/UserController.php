@@ -49,6 +49,10 @@ class UserController extends Controller
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
+
+        if (null !== $this->userService->findOneByUsername($form["username"]->getData())) {
+            return $this->redirectToRoute("user_register");
+        }
         $this->userService->save($user);
         return $this->redirectToRoute("security_login");
     }
@@ -92,10 +96,14 @@ class UserController extends Controller
         $form->remove("password");
         $form->handleRequest($request);
 
+//        var_dump($this->userService->findOneByUsername($form["username"]->getData()));
+//        exit();
+        if (null !== $this->userService->findOneByUsername($form["username"]->getData())) {
+            return $this->redirectToRoute("user_my_profile");
+        }
         $this->uploadFile($form, $user);
         $this->userService->editProfile($user);
         return $this->redirectToRoute("user_my_profile");
-
     }
 
 
