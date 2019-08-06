@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <form class="centerText" enctype="multipart/form-data" action="{{ path('edit_post', {id: post.id}) }}"
+          method="post">
+        <div class="registerForm">
+            <h1>Edit Post</h1>
+            <h3>To edit your post you need to fill this fields.</h3>
+            <hr>
+
+
+            <label for="post_title"><b>Title</b></label>
+            <label>
+                <input type="text" id="post_title" placeholder="Title" name="post[title]" value="{{ post.title }}">
+            </label>
+
+            <label for="post_description"><b>Description</b></label>
+            <label>
+                <textarea class="description" id="post_description" placeholder="Description" name="post[description]"
+                >{{ post.description }}</textarea>
+            </label>
+
+            <label for="post_image"><b>Upload Image</b></label>
+            <label>
+                <input accept=".jpg, .jpeg, .png" type="file" id="post_image"
+                       name="post[image]" class="file">
+            </label>
+            <hr>
+
+            <button type="submit" class="btn btn-primary">EDIT POST</button>
+
+            {#                        {{ form_row(form._token) }}#}
+        </div>
+    </form>
+
+
+{% endblock %}
+
+

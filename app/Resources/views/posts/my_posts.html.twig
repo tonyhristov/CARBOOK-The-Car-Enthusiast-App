@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% for post in posts %}
+        <div class="post">
+            <post>
+                <div>
+                    <h5 class="author">
+                        <img src="{{ asset('uploads/images/profiles/' ~ post.author.image) }}"
+                             alt="Cannot load the picture"
+                             class="w3-circle" width="50" height="50">
+                        {{ post.author.username }}
+                    </h5>
+                </div>
+                <hr>
+                <div>
+                    <h1>{{ post.title }}</h1>
+                </div>
+                <div>
+                    <p>
+                        {{ post.description }}
+                    </p>
+                </div>
+                <div>
+                    <img src="{{ asset('uploads/images/posts/' ~ post.image) }}" alt="You have not set picture for this post."
+                         width="400" height="200">
+                </div>
+                <br>
+                <div style="background: #1E90FF; float:right ">
+                    <a href="{{ path('edit_post', {id: post.id}) }}" class="btn"
+                       style=" color: white">Edit</a>
+                    <a href="{{ path('post_delete', {id: post.id}) }}" class="danger"
+                       style=" color: white">Delete</a>
+
+                </div>
+                <br><br><br>
+                <div>
+                    <h5 style="float: right">Date Added: {{ post.addedOn | date("F jS \\a\\t g:ia") }}</h5>
+                </div>
+                <br>
+            </post>
+        </div>
+    {% endfor %}
+
+{% endblock %}
+
+
