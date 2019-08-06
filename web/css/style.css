@@ -3,6 +3,7 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
 
+
 /*body {*/
 /*    font-family: Arial, Helvetica, sans-serif;*/
 /*    background-color: white;*/
@@ -131,6 +132,17 @@ a {
 }
 .readmore{
     background-color: #1e90ff;
+    color: white;
+    padding: 16px 20px;
+    margin: auto;
+    border: solid white;
+    cursor: pointer;
+    width: 65%;
+    opacity: 0.9;
+}
+
+.danger{
+    background-color: red;
     color: white;
     padding: 16px 20px;
     margin: auto;
