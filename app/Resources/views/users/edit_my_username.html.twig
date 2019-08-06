@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id "edit_username" %}
+
+{% block body %}
+
+    <form class="centerText" action="{{ path('user_edit_username') }}" method="post">
+        <div class="registerForm">
+            <h1>Change Username</h1>
+            <hr>
+
+            <label for="user_username"><b>Username</b></label>
+            <label>
+                <input type="text" id="user_username" name="user[username]" value="{{ app.user.username }}">
+            </label>
+
+            <hr>
+            <button type="submit" class="btn btn-primary">Change</button>
+            {#                        {{ form_row(form._token) }}#}
+        </div>
+    </form>
+
+{% endblock %}
+
+
