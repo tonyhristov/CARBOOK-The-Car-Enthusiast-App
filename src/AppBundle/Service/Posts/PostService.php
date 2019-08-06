@@ -5,6 +5,7 @@ namespace AppBundle\Service\Posts;
 
 
 use AppBundle\Entity\Post;
+use AppBundle\Entity\User;
 use AppBundle\Repository\PostRepository;
 use AppBundle\Service\Users\UserService;
 
@@ -57,4 +58,5 @@ class PostService implements PostServiceInterface
     {
         return $this->postRepository->find($id);
     }
+
 }

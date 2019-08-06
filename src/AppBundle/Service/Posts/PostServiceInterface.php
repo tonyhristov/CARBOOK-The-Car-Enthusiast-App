@@ -5,6 +5,7 @@ namespace AppBundle\Service\Posts;
 
 
 use AppBundle\Entity\Post;
+use AppBundle\Entity\User;
 
 interface PostServiceInterface
 {
@@ -17,4 +18,5 @@ interface PostServiceInterface
     public function getAll();
 
     public function getOne(int $id): ?Post;
+
 }
