@@ -66,11 +66,26 @@ class User implements UserInterface
     private $posts;
 
     /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\PreviousCar", mappedBy="driver")
+     */
+    private $previousCars;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\CurrentCar", mappedBy="driver")
+     */
+    private $currentCars;
+
+    /**
      * User constructor.
      */
     public function __construct()
     {
         $this->posts = new ArrayCollection();
+        $this->previousCars = new ArrayCollection();
     }
 
 
@@ -254,6 +269,38 @@ class User implements UserInterface
     {
         $this->posts[] = $posts;
         return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getPreviousCars(): ArrayCollection
+    {
+        return $this->previousCars;
+    }
+
+    /**
+     * @param ArrayCollection $previousCars
+     */
+    public function setPreviousCars(ArrayCollection $previousCars): void
+    {
+        $this->previousCars = $previousCars;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getCurrentCars(): ArrayCollection
+    {
+        return $this->currentCars;
+    }
+
+    /**
+     * @param ArrayCollection $currentCars
+     */
+    public function setCurrentCars(ArrayCollection $currentCars): void
+    {
+        $this->currentCars = $currentCars;
     }
 
 }
