@@ -10,6 +10,7 @@ parameters:
   profile_image_directory: '%kernel.project_dir%/web/uploads/images/profiles'
   post_image_directory: '%kernel.project_dir%/web/uploads/images/posts'
   previous_car_image_directory: '%kernel.project_dir%/web/uploads/images/previous_cars'
+  current_car_image_directory: '%kernel.project_dir%/web/uploads/images/current_cars'
 
 framework:
   #esi: ~

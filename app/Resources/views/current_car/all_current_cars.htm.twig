@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <br>
+    <br>
+    <br>
+    <div style="background: #1E90FF; text-align: center">
+        <a href="{{ path('create_current_car') }}" style=" color: white"
+           class=" w3-button w3-hide-small w3-padding-large w3-hover-grey">ADD CURRENT CAR</a>
+    </div>
+
+    {% for currentCar in currentCars %}
+        <div class="post">
+            <currentCar>
+                <div>
+                    <h5 class="author">
+                        <img src="{{ asset('uploads/images/profiles/' ~ currentCar.driver.image) }}"
+                             alt="Cannot load the picture"
+                             class="w3-circle" width="50" height="50">
+                        {{ currentCar.driver.username }}
+                    </h5>
+                </div>
+                <hr>
+                <div>
+                    <h1>{{ currentCar.make }} {{ currentCar.model }}</h1>
+                    <h1>Engine: {{ currentCar.engine }}</h1>
+                    <h1>Year: {{ currentCar.year }} </h1>
+                </div>
+
+                <div>
+                    <h3>{{ currentCar.description }}</h3>
+                </div>
+
+                <div>
+                    <img src="{{ asset('uploads/images/current_cars/' ~ currentCar.image) }}"
+                         alt="You have not set picture for this car."
+                         width="400" height="200">
+                </div>
+                <br>
+
+                <div style="background: #1E90FF; float:right ">
+                    <a href="{{ path('edit_previous_car', {id: currentCar.id}) }}" class="btn"
+                       style=" color: white">Edit</a>
+                    <a href="{{ path('current_car_delete', {id: currentCar.id}) }}" class="danger"
+                       style=" color: white">Delete</a>
+                </div>
+
+                <br><br><br>
+                <br>
+            </currentCar>
+        </div>
+    {% endfor %}
+
+{% endblock %}
