@@ -19,6 +19,30 @@
 
         <div class="profile" style="padding: 20px; border: none; background: grey;">
             <hr class="hr-primary">
+            <h2>Current Cars</h2>
+            <hr class="hr-medium">
+            {% for currentCar in currentCars %}
+                <div>
+                    <h1>{{ currentCar.make }} {{ currentCar.model }}</h1>
+                    <h1>Engine: {{ currentCar.engine }}</h1>
+                    <h1>Year: {{ currentCar.year }} </h1>
+                </div>
+
+                <div>
+                    <h3>{{ currentCar.description }}</h3>
+                </div>
+
+                <div>
+                    <img src="{{ asset('uploads/images/current_cars/' ~ currentCar.image) }}"
+                         alt="You have not set picture for this car."
+                         width="400" height="200">
+                </div>
+                <hr class="hr-small">
+            {% endfor %}
+        </div>
+
+        <div class="profile" style="padding: 20px; border: none; background: grey;">
+            <hr class="hr-primary">
             <h2>Previous Cars</h2>
             <hr class="hr-medium">
             {% for previousCar in previousCars %}
@@ -40,6 +64,7 @@
                 <hr class="hr-small">
             {% endfor %}
         </div>
+
         <div style="background: #1E90FF; float:right ">
             <a href="{{ path("homepage") }}" class="btn"
                style=" color: white">Back</a>
