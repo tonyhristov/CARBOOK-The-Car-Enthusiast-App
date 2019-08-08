@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id "create_current_car" %}
+
+{% block body %}
+
+    <form class="centerText" enctype="multipart/form-data" action="{{ path('create_current_car') }}" method="post">
+        <div class="registerForm">
+            <h1>ADD YOU CURRENT CAR</h1>
+            <h3>To add your current car you need to fill this fields.</h3>
+            <hr>
+
+
+            <label for="current_car_make"><b>Make</b></label>
+            <label>
+                <input type="text" id="current_car_make" placeholder="Make" name="current_car[make]" required>
+            </label>
+
+            <label for="current_car_model"><b>Model</b></label>
+            <label>
+                <input type="text" id="current_car_model" placeholder="Model" name="current_car[model]" required>
+            </label>
+
+            <label for="current_car_engine"><b>Engine</b></label>
+            <label>
+                <input type="text" id="current_car_engine" placeholder="Engine" name="current_car[engine]" required>
+            </label>
+
+            <label for="current_car_year"><b>Year</b></label>
+            <label>
+                <input type="text" id="current_car_year" placeholder="Year" name="current_car[year]" required>
+            </label>
+
+            <label for="current_car_description"><b>Description</b></label>
+            <label>
+                <textarea class="description" id="current_car_description" placeholder="Description"
+                          name="current_car[description]"
+                          required></textarea>
+            </label>
+
+            <label for="current_car_image"><b>Upload Image</b></label>
+            <label>
+                <input accept=".jpg, .jpeg, .png" type="file" id="current_car_image"
+                       name="current_car[image]" class="file" required>
+            </label>
+            <hr>
+
+            <button type="submit" class="btn btn-primary">ADD CAR</button>
+
+            {#                        {{ form_row(form._token) }}#}
+        </div>
+    </form>
+
+{% endblock %}

@@ -1,10 +1,12 @@
 {% extends 'base.html.twig' %}
 
+{% block body_id "create_previous_car" %}
+
 {% block body %}
 
     <form class="centerText" enctype="multipart/form-data" action="{{ path('create_previous_car') }}" method="post">
         <div class="registerForm">
-            <h1>ADD YOU PREVIOUS CAR</h1>
+            <h1>ADD YOUR PREVIOUS CAR</h1>
             <h3>To add your previous car you need to fill this fields.</h3>
             <hr>
 
@@ -38,7 +40,7 @@
             <label for="previous_car_image"><b>Upload Image</b></label>
             <label>
                 <input accept=".jpg, .jpeg, .png" type="file" id="previous_car_image"
-                       name="previous_car[image]" class="file">
+                       name="previous_car[image]" class="file" required>
             </label>
             <hr>
 
