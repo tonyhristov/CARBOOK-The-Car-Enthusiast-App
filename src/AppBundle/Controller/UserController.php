@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\CurrentCar;
 use AppBundle\Entity\PreviousCar;
 use AppBundle\Entity\User;
 use AppBundle\Form\UserType;
@@ -188,12 +189,17 @@ class UserController extends Controller
             ->getDoctrine()
             ->getRepository(PreviousCar::class)
             ->findBy(["driver" => $this->userService->findOne($user)]);
+        $currentCar = $this
+            ->getDoctrine()
+            ->getRepository(CurrentCar::class)
+            ->findBy(["driver" => $this->userService->findOne($user)]);
         if (!$this->getUser()) {
             return $this->redirectToRoute("security_login");
         }
         return $this->render("users/view_profile.html.twig", [
             "user" => $user,
-            "previousCars" => $previousCar
+            "previousCars" => $previousCar,
+            "currentCars" => $currentCar
         ]);
     }
 

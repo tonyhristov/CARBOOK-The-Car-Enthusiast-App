@@ -28,15 +28,12 @@ class PreviousCarController extends Controller
 
     /**
      * @Route("/my_previous_cars", name="previous_cars")
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function getAllCarsByUser()
     {
-        $previousCar = $this
-            ->getDoctrine()
-            ->getRepository(PreviousCar::class)
-            ->findBy(["driver" => $this->getUser()]);
-
+        $previousCar = $this->previousCarService->getAllPreviousCars();
         return $this->render("previous_car/previous_cars.html.twig", ["previousCars" => $previousCar]);
     }
 
@@ -89,7 +86,7 @@ class PreviousCarController extends Controller
             ->getOne($id);
 
         if ($previousCar === null) {
-            return $this->redirectToRoute("homepage");
+            return $this->redirectToRoute("previous_cars");
         }
 
         $form = $this->createForm(PreviousCarType::class, $previousCar);
