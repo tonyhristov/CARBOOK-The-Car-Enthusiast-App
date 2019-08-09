@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id "create_current_car" %}
+
+{% block body %}
+
+    <form class="centerText" enctype="multipart/form-data" action="{{ path('edit_current_car', {id: currentCar.id}) }}"
+          method="post">
+        <div class="registerForm">
+            <h1>EDIT YOU CURRENT CAR</h1>
+            <h3>To edit your current car you need to fill this fields.</h3>
+            <hr>
+
+
+            <label for="current_car_make"><b>Make</b></label>
+            <label>
+                <input type="text" id="current_car_make" placeholder="Make" name="current_car[make]"
+                       value="{{ currentCar.make }}" required>
+            </label>
+
+            <label for="current_car_model"><b>Model</b></label>
+            <label>
+                <input type="text" id="current_car_model" placeholder="Model" name="current_car[model]"
+                       value="{{ currentCar.model }}" required>
+            </label>
+
+            <label for="current_car_engine"><b>Engine</b></label>
+            <label>
+                <input type="text" id="current_car_engine" placeholder="Engine" name="current_car[engine]"
+                       value="{{ currentCar.engine }}" required>
+            </label>
+
+            <label for="current_car_year"><b>Year</b></label>
+            <label>
+                <input type="text" id="current_car_year" placeholder="Year" name="current_car[year]"
+                       value="{{ currentCar.year }}" required>
+            </label>
+
+            <label for="current_car_description"><b>Description</b></label>
+            <label>
+                <textarea class="description" id="current_car_description" placeholder="Description"
+                          name="current_car[description]"
+                          required>{{ currentCar.description }}</textarea>
+            </label>
+
+            <label for="current_car_image"><b>Upload Image</b></label>
+            <label>
+                <input accept=".jpg, .jpeg, .png" type="file" id="current_car_image"
+                       name="current_car[image]" class="file" value="{{ currentCar.image }}" required>
+            </label>
+            <hr>
+
+            <button type="submit" class="btn btn-primary">EDIT CAR</button>
+
+            {#                        {{ form_row(form._token) }}#}
+        </div>
+    </form>
+
+{% endblock %}
