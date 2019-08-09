@@ -111,7 +111,7 @@ class CurrentCarController extends Controller
     }
 
     /**
-     * @Route("/edit_previous_car/{id}", methods={"POST"})
+     * @Route("/edit_current_car/{id}", methods={"POST"})
      *
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @param Request $request
@@ -125,8 +125,7 @@ class CurrentCarController extends Controller
         $form->handleRequest($request);
         $this->uploadFile($form, $currentCar);
         $this->currentCarsService->edit($currentCar);
-        $this->redirectToRoute("current_cars");
-
+        return $this->redirectToRoute("current_cars");
     }
 
 
