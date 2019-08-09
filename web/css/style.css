@@ -151,3 +151,15 @@ a {
     width: 65%;
     opacity: 0.9;
 }
+.hr-primary {
+    border: 5px solid white;
+    margin-bottom: 25px;
+}
+.hr-medium {
+    border: 3px solid white;
+    margin-bottom: 25px;
+}
+.hr-small {
+    border: 2px solid white;
+    margin-bottom: 25px;
+}
