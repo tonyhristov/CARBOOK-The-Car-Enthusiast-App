@@ -302,5 +302,4 @@ class User implements UserInterface
     {
         $this->currentCars = $currentCars;
     }
-
 }

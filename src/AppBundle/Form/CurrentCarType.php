@@ -24,7 +24,9 @@ class CurrentCarType extends AbstractType
                 [
                     "data_class" => null,
                 ]);
-    }/**
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)

@@ -241,4 +241,3 @@ class PreviousCar
         $this->driver = $driver;
     }
 }
-

@@ -17,4 +17,5 @@ interface CurrentCarsServiceInterface
     public function getAllCurrentCars();
 
     public function getOne(int $id): ?CurrentCar;
+
 }

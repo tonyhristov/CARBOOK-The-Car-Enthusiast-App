@@ -33,5 +33,4 @@ class PostType extends AbstractType
             'data_class' => 'AppBundle\Entity\Post'
         ));
     }
-
 }
