@@ -57,5 +57,4 @@ class PreviousCarService implements PreviousCarServiceInterface
     {
         return $this->previousCarRepository->find($id);
     }
-
 }

@@ -16,4 +16,5 @@ class BCryptService implements EncryptionServiceInterface
     {
         return password_verify($password, $hash);
     }
+
 }

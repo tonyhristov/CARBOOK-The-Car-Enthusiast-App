@@ -16,4 +16,5 @@ class ArgonEncryption implements EncryptionServiceInterface
     {
         return password_verify($password, $hash);
     }
+
 }

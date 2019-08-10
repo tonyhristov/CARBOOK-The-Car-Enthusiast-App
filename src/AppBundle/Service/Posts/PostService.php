@@ -27,7 +27,6 @@ class PostService implements PostServiceInterface
         $this->userService = $userService;
     }
 
-
     public function save(Post $post): bool
     {
         $author = $this->userService->currentUser();
@@ -58,5 +57,4 @@ class PostService implements PostServiceInterface
     {
         return $this->postRepository->find($id);
     }
-
 }

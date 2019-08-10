@@ -24,7 +24,6 @@ class UserService implements UserServiceInterface
         $this->encryptionService = $encryptionService;
     }
 
-
     /**
      * @param string $username
      * @return User|null|object
