@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+
     <div class="registerForm">
         <br><br>
 
@@ -29,7 +30,6 @@
                     Username</a>
             </div>
         </div>
-
         <br><br>
 
         <div align="center">
@@ -39,7 +39,6 @@
                     <br/>Current Car
                 </a>
             </button>
-
             <button type="button" style="padding: 0; margin: 5px; border: solid #1E90FF; background: #1E90FF;">
                 <a href="{{ path('previous_cars') }}">
                     <img src="{{ asset('previousCars.jpg') }}" alt="Save icon"/>
@@ -50,4 +49,3 @@
     </div>
 
 {% endblock %}
-
