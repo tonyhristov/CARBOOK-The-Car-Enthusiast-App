@@ -16,7 +16,7 @@ ORM - [Doctrine](https://www.doctrine-project.org/)
 
 Database - [MySql](https://www.mysql.com/)
 
-Running
+To Run
 =======
 To run the app you need to write in the terminal the following command:
 
