@@ -3,14 +3,27 @@ CARBOOK
 
 This is project for car enthusiast that want to share there cars with others.
 You can share your vehicle, no matter if it is a bike, 
-a supercar or a tractor. 
-When you share it many people around the world will see it.
+a supercar or a tractor.
 Why I made this, well we all want takes pictures of our cars,
 because we know that they are prettier than us 
 and we want to share them with other people.
 
-Architecture
+Made with
 =========
+Framework - [Symfony - 3.4](https://symfony.com/)
+
+ORM - [Doctrine](https://www.doctrine-project.org/) 
+
+Database - [MySql](https://www.mysql.com/)
+
+Running
+=======
+To run the app you need to write in the terminal the following command:
+
+```php bin/console server:run```
+
+Architecture
+============
 ```
 |   .gitignore
 |   Architecture.txt
