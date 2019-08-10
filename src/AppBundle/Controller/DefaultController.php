@@ -40,6 +40,7 @@ class DefaultController extends Controller
         return $this->render('about/about.html.twig');
     }
 
+
     /**
      * @Route("/contact", name="contactPage")
      * @param Request $request

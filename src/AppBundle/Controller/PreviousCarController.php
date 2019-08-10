@@ -28,6 +28,7 @@ class PreviousCarController extends Controller
 
     /**
      * @Route("/my_previous_cars", name="previous_cars")
+     *
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -65,11 +66,11 @@ class PreviousCarController extends Controller
         $previousCar = new PreviousCar();
         $form = $this->createForm(PreviousCarType::class, $previousCar);
         $form->handleRequest($request);
-
         $this->uploadFile($form, $previousCar);
         $this->previousCarService->save($previousCar);
         return $this->redirectToRoute("previous_cars");
     }
+
 
     /**
      * @Route("/delete_previous_car/{id}",name="previous_car_delete")
@@ -84,11 +85,9 @@ class PreviousCarController extends Controller
         $previousCar = $this
             ->previousCarService
             ->getOne($id);
-
         if ($previousCar === null) {
             return $this->redirectToRoute("previous_cars");
         }
-
         $form = $this->createForm(PreviousCarType::class, $previousCar);
         $form->handleRequest($request);
         $this->previousCarService->delete($previousCar);
@@ -106,17 +105,14 @@ class PreviousCarController extends Controller
     public function edit(int $id)
     {
         $previousCar = $this->previousCarService->getOne($id);
-
         if ($previousCar === null) {
             return $this->redirectToRoute("homepage");
         }
-
         return $this->render("previous_car/edit.html.twig",
             [
                 "form" => $this->createForm(PreviousCarType::class)->createView(),
                 "previousCar" => $previousCar
             ]);
-
     }
 
     /**

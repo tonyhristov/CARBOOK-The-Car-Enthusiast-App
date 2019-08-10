@@ -25,7 +25,6 @@ class UserController extends Controller
      */
     private $userService;
 
-
     public function __construct(UserServiceInterface $userService)
     {
         $this->userService = $userService;
@@ -54,7 +53,6 @@ class UserController extends Controller
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
-
         if (null !== $this->userService->findOneByUsername($form["username"]->getData())) {
             return $this->redirectToRoute("user_register");
         }
@@ -65,6 +63,7 @@ class UserController extends Controller
 
     /**
      * @Route("/my_profile",  name="user_my_profile")
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      */
     public function profile()
     {
@@ -110,6 +109,7 @@ class UserController extends Controller
 
     /**
      * @Route("edit_password", name="user_edit_password", methods={"GET"})
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @param Request $request
      * @return Response
      */
@@ -123,6 +123,7 @@ class UserController extends Controller
 
     /**
      * @Route("edit_password", methods={"POST"})
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @param Request $request
      * @return Response
      */
@@ -140,8 +141,10 @@ class UserController extends Controller
         return $this->redirectToRoute("user_my_profile");
     }
 
+
     /**
      * @Route("edit_username", name="user_edit_username", methods={"GET"})
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @param Request $request
      * @return Response
      */
@@ -155,6 +158,7 @@ class UserController extends Controller
 
     /**
      * @Route("edit_username", methods={"POST"})
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @param Request $request
      * @return Response
      */
@@ -167,11 +171,9 @@ class UserController extends Controller
         $form->remove('name');
         $form->remove('image');
         $form->handleRequest($request);
-
         if (null !== $this->userService->findOneByUsername($form["username"]->getData())) {
             return $this->redirectToRoute("user_my_profile");
         }
-
         $this->userService->editProfile($user);
         return $this->redirectToRoute("user_my_profile");
     }
@@ -179,6 +181,7 @@ class UserController extends Controller
 
     /**
      * @Route("/{username}}",  name="user_profile")
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @param User $user
      * @return \Symfony\Component\HttpFoundation\Response
      */

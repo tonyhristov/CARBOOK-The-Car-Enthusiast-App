@@ -21,7 +21,6 @@ class PostController extends Controller
      */
     private $postService;
 
-
     /**
      * PostController constructor.
      * @param PostService $postService
@@ -65,6 +64,7 @@ class PostController extends Controller
         return $this->redirectToRoute("homepage");
     }
 
+
     /**
      * @Route("/post/{id}", name="post_view")
      *
@@ -81,6 +81,7 @@ class PostController extends Controller
 
         return $this->render("posts/view_post.html.twig", ["post" => $post]);
     }
+
 
     /**
      * @Route("/posts/my_posts", name="my_posts")
@@ -113,16 +114,15 @@ class PostController extends Controller
         $post = $this
             ->postService
             ->getOne($id);
-
         if ($post === null) {
             return $this->redirectToRoute("homepage");
         }
-
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
         $this->postService->delete($post);
         return $this->redirectToRoute("my_posts");
     }
+
 
     /**
      * @Route("/edit/{id}", name="edit_post", methods={"GET"})
@@ -134,11 +134,9 @@ class PostController extends Controller
     public function edit(int $id)
     {
         $post = $this->postService->getOne($id);
-
         if ($post === null) {
             return $this->redirectToRoute("homepage");
         }
-
         return $this->render("posts/edit_post.html.twig",
             [
                 "form" => $this->createForm(PostType::class)->createView(),

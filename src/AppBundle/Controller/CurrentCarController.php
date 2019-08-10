@@ -28,6 +28,7 @@ class CurrentCarController extends Controller
 
     /**
      * @Route("/my_current_cars", name="current_cars")
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function getAllCurrentCarsByDriver()
@@ -35,6 +36,7 @@ class CurrentCarController extends Controller
         $currentCar = $this->currentCarsService->getAllCurrentCars();
         return $this->render('current_car/all_current_cars.htm.twig', ["currentCars" => $currentCar]);
     }
+
 
     /**
      * @Route("create_current_car", name="create_current_car", methods={"GET"})
@@ -70,6 +72,7 @@ class CurrentCarController extends Controller
         return $this->redirectToRoute("current_cars");
     }
 
+
     /**
      * @Route("/delete_current_car/{id}",name="current_car_delete")
      *
@@ -89,6 +92,7 @@ class CurrentCarController extends Controller
         $this->currentCarsService->delete($currentCar);
         return $this->redirectToRoute("current_cars");
     }
+
 
     /**
      * @Route("/edit_current_car/{id}", name="edit_current_car", methods={"GET"})
