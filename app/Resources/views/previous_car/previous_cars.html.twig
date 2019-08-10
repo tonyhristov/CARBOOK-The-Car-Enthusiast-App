@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+
     <br>
     <br>
     <br>
@@ -10,46 +11,47 @@
 
     </div>
 
-        {% for previousCar in previousCars %}
-            <div class="post">
-                <previousCar>
-                    <div>
-                        <h5 class="author">
-                            <img src="{{ asset('uploads/images/profiles/' ~ previousCar.driver.image) }}"
-                                 alt="Cannot load the picture"
-                                 class="w3-circle" width="50" height="50">
-                            {{ previousCar.driver.username }}
-                        </h5>
-                    </div>
-                    <hr>
-                    <div>
-                        <h1>{{ previousCar.make }} {{ previousCar.model }}</h1>
-                        <h1>Engine: {{ previousCar.engine }}</h1>
-                        <h1>Year: {{ previousCar.year }} </h1>
-                    </div>
+    {% for previousCar in previousCars %}
+        <div class="post">
+            <previousCar>
+                <div>
+                    <h5 class="author">
+                        <img src="{{ asset('uploads/images/profiles/' ~ previousCar.driver.image) }}"
+                             alt="Cannot load the picture"
+                             class="w3-circle" width="50" height="50">
+                        {{ previousCar.driver.username }}
+                    </h5>
+                </div>
+                <hr>
 
-                    <div>
-                        <h3>{{ previousCar.description }}</h3>
-                    </div>
+                <div>
+                    <h1>{{ previousCar.make }} {{ previousCar.model }}</h1>
+                    <h1>Engine: {{ previousCar.engine }}</h1>
+                    <h1>Year: {{ previousCar.year }} </h1>
+                </div>
 
-                    <div>
-                        <img src="{{ asset('uploads/images/previous_cars/' ~ previousCar.image) }}" alt="You have not set picture for this car."
-                             width="400" height="200">
-                    </div>
-                    <br>
+                <div>
+                    <h3>{{ previousCar.description }}</h3>
+                </div>
 
-                    <div style="background: #1E90FF; float:right ">
-                        <a href="{{ path('edit_previous_car', {id: previousCar.id}) }}" class="btn"
-                           style=" color: white">Edit</a>
-                        <a href="{{ path('previous_car_delete', {id: previousCar.id}) }}" class="danger"
-                           style=" color: white">Delete</a>
+                <div>
+                    <img src="{{ asset('uploads/images/previous_cars/' ~ previousCar.image) }}"
+                         alt="You have not set picture for this car."
+                         width="400" height="200">
+                </div>
+                <br>
 
-                    </div>
+                <div style="background: #1E90FF; float:right ">
+                    <a href="{{ path('edit_previous_car', {id: previousCar.id}) }}" class="btn"
+                       style=" color: white">Edit</a>
+                    <a href="{{ path('previous_car_delete', {id: previousCar.id}) }}" class="danger"
+                       style=" color: white">Delete</a>
 
-                    <br><br><br>
-                    <br>
-                </previousCar>
-            </div>
-        {% endfor %}
+                </div>
+
+                <br><br><br>
+            </previousCar>
+        </div>
+    {% endfor %}
 
 {% endblock %}

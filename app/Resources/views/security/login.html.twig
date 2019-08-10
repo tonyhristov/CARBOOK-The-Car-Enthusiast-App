@@ -4,11 +4,13 @@
 
 {% block body %}
 
-    <form class="centerText" name="authenticate" class="form-horizontal" action="{{ path('security_login') }}" method="post">
+    <form class="centerText" name="authenticate" class="form-horizontal" action="{{ path('security_login') }}"
+          method="post">
         <div class="loginForm">
             <h1>Login</h1>
             <h3>Please fill in this form to login into your account.</h3>
             <hr>
+
             <label for="username">Username</label>
             <label>
                 <input type="text" class="form-control" id="username" placeholder="Enter Username" name="_username">
@@ -21,6 +23,7 @@
             <hr>
 
             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+
             <div class="form-group">
                 <div class="col-sm-4 col-sm-offset-4">
                     <button type="submit" class="btn btn-primary">Login</button>
@@ -34,6 +37,5 @@
             </div>
         </div>
     </form>
-
 
 {% endblock %}

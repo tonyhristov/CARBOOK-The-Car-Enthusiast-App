@@ -2,15 +2,15 @@
 
 {% block body %}
 
-<<br>
-<br>
-<br>
-<div style="background: #1E90FF; text-align: center">
-    <a href="{{ path('create_post') }}" style=" color: white"
-       class=" w3-button w3-hide-small w3-padding-large w3-hover-grey">ADD POST</a>
-</div>
+    <<br>
+    <br>
+    <br>
+    <div style="background: #1E90FF; text-align: center">
+        <a href="{{ path('create_post') }}" style=" color: white"
+           class=" w3-button w3-hide-small w3-padding-large w3-hover-grey">ADD POST</a>
+    </div>
 
-<div class="profile" style="padding: 20px; border: none; background: grey;">
+    <div class="profile" style="padding: 20px; border: none; background: grey;">
     {% for post in posts %}
         <div class="post">
             <post>
@@ -23,20 +23,24 @@
                     </h5>
                 </div>
                 <hr>
+
                 <div>
                     <h1>{{ post.title }}</h1>
                 </div>
+
                 <div>
                     <p>
                         {{ post.description }}
                     </p>
                 </div>
+
                 <div>
                     <img src="{{ asset('uploads/images/posts/' ~ post.image) }}"
                          alt="You have not set picture for this post."
                          width="400" height="200">
                 </div>
                 <br>
+
                 <div style="background: #1E90FF; float:right ">
                     <a href="{{ path('edit_post', {id: post.id}) }}" class="btn"
                        style=" color: white">Edit</a>
@@ -44,7 +48,9 @@
                        style=" color: white">Delete</a>
 
                 </div>
+
                 <br><br><br>
+
                 <div>
                     <h5 style="float: right">Date Added: {{ post.addedOn | date("F jS \\a\\t g:ia") }}</h5>
                 </div>
@@ -53,6 +59,4 @@
         </div>
     {% endfor %}
 
-    {% endblock %}
-
-
+{% endblock %}

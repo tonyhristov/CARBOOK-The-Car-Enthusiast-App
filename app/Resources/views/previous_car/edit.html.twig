@@ -1,7 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <form class="centerText" enctype="multipart/form-data" action="{{ path('edit_previous_car', {id: previousCar.id}) }}" method="post">
+
+    <form class="centerText" enctype="multipart/form-data"
+          action="{{ path('edit_previous_car', {id: previousCar.id}) }}" method="post">
         <div class="registerForm">
             <h1>EDIT YOU PREVIOUS CAR</h1>
             <h3>To edit your previous car you need to fill this fields.</h3>
@@ -47,9 +49,7 @@
             <hr>
 
             <button type="submit" class="btn btn-primary">EDIT CAR</button>
-
-            {#                        {{ form_row(form._token) }}#}
         </div>
     </form>
-{% endblock %}
 
+{% endblock %}
