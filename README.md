@@ -1,12 +1,10 @@
 CARBOOK
 =========
 
-This is project for car enthusiast that want to share there cars with others.
-You can share your vehicle, no matter if it is a bike, 
-a supercar or a tractor.
-Why I made this, well we all want takes pictures of our cars,
-because we know that they are prettier than us 
-and we want to share them with other people.
+This is a project for the car enthusiast that want to share their cars with others. 
+You can share your vehicle, no matter if it is a bike, a supercar or a tractor. Why 
+I made this, well we all want to take pictures of our cars, because we know that they 
+are prettier than us and we want to share them with other people.
 
 Made with
 =========
